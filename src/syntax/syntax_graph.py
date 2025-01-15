@@ -51,6 +51,14 @@ class SyntaxGraph:
                     self.segment_nodes.append(node)
                     index += 1
 
+        # if token and str(token.location).startswith("7:190:"):
+        #     print(str(token.location),len(self.segment_nodes),word_type,len(token.segments))
+        #     print()
+        #     for s in token.segments:
+        #         for v in dir(s):
+        #             if not v.startswith("_"):
+        #                 print(v, getattr(s, v))
+
     def insert_elided_word(
             self,
             word_index: int,

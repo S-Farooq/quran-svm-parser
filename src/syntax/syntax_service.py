@@ -16,7 +16,7 @@ from ..api.responses import GraphLocation, GraphResponse, TokenResponse
 
 
 class SyntaxService:
-    SYNTAX_FILE = Path('.data/syntax.txt')
+    SYNTAX_FILE = Path('data/syntax.txt')
 
     def __init__(self, client: CorpusClient, morphology_service: MorphologyService):
         self.graphs: List[SyntaxGraph] = []

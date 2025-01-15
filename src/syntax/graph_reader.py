@@ -8,7 +8,7 @@ from ..syntax.word_type import WordType
 from ..syntax.phrase_type import PhraseType
 from ..syntax.relation import Relation
 
-
+# NOTE: verses 8:43:7-10 and 7:190:4-8 have to be fixed manually in the syntax file (based on corpus.quran.com)
 class GraphReader:
 
     def __init__(self, morphology_service: MorphologyService, reader: TextIO):
@@ -106,8 +106,21 @@ class GraphReader:
         segment_nodes = self._graph.segment_nodes
         segment_node_count = len(segment_nodes)
 
-        return (segment_nodes[node_index] if node_index < segment_node_count
+        try:
+            x = (segment_nodes[node_index] if node_index < segment_node_count
                 else self._graph.phrases[node_index - segment_node_count])
+        except Exception as e: 
+            print(e)
+            print(node_index, segment_nodes, segment_node_count)
+            for n in segment_nodes:
+                if n.word.token is not None:
+                    print(n.word.token.location)
+                print(n.index)
+                print(n.segment_number)
+                print()
+            raise(e)
+
+        return x
 
     @staticmethod
     def _parse_node_name(name: str):

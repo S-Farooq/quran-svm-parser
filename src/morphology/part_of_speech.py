@@ -61,3 +61,105 @@ PartOfSpeech.tags = {
     part_of_speech.tag: part_of_speech
     for part_of_speech in PartOfSpeech
 }
+
+class PartOfSpeechEng(Enum):
+    ADJ = auto(), "ADJ"
+    ADP = auto(), "ADP"
+    ADV = auto(), "ADV"
+    AUX = auto(), "AUX"
+    CONJ = auto(), "CONJ"
+    CCONJ = auto(), "CCONJ"
+    DET = auto(), "DET"
+    INTJ = auto(), "INTJ"
+    NOUN = auto(), "NOUN"
+    NUM = auto(), "NUM"
+    PART = auto(), "PART"
+    PRON = auto(), "PRON"
+    PROPN = auto(), "PROPN"
+    PUNCT = auto(), "PUNCT"
+    SCONJ = auto(), "SCONJ"
+    SYM = auto(), "SYM"
+    VERB = auto(), "VERB"
+    X = auto(), "X"
+    EOL = auto(), "EOL"
+    SPACE = auto(), "SPACE"
+
+    def __init__(self, number_value, tag: str):
+        self.number_value = number_value
+        self.tag = tag
+
+    @staticmethod
+    def parse(tag: str):
+        return PartOfSpeechEng.tags.get(tag)
+
+
+PartOfSpeechEng.tags = {
+    part_of_speech.tag: part_of_speech
+    for part_of_speech in PartOfSpeechEng
+}
+
+class PartOfSpeechTagEng(Enum):
+    # MONEY = auto(), "$"
+    # SINGLE_QUOTES = auto(), "''"
+    # COMMA = auto(), ","
+    # LRB = auto(), "-LRB-"
+    # RRB = auto(), "-RRB-"
+    PERIOD = auto(), "."
+    COLON = auto(), ":"
+    ADD = auto(), "ADD"
+    AFX = auto(), "AFX"
+    CC = auto(), "CC"
+    CD = auto(), "CD"
+    DT = auto(), "DT"
+    EX = auto(), "EX"
+    FW = auto(), "FW"
+    HYPH = auto(), "HYPH"
+    IN = auto(), "IN"
+    JJ = auto(), "JJ"
+    JJR = auto(), "JJR"
+    JJS = auto(), "JJS"
+    LS = auto(), "LS"
+    MD = auto(), "MD"
+    NFP = auto(), "NFP"
+    NN = auto(), "NN"
+    NNP = auto(), "NNP"
+    NNPS = auto(), "NNPS"
+    NNS = auto(), "NNS"
+    PDT = auto(), "PDT"
+    POS = auto(), "POS"
+    PRP = auto(), "PRP"
+    PRPS = auto(), "PRP$"
+    RB = auto(), "RB"
+    RBR = auto(), "RBR"
+    RBS = auto(), "RBS"
+    RP = auto(), "RP"
+    SYM = auto(), "SYM"
+    TO = auto(), "TO"
+    UH = auto(), "UH"
+    VB = auto(), "VB"
+    VBD = auto(), "VBD"
+    VBG = auto(), "VBG"
+    VBN = auto(), "VBN"
+    VBP = auto(), "VBP"
+    VBZ = auto(), "VBZ"
+    WDT = auto(), "WDT"
+    WP = auto(), "WP"
+    WPS = auto(), "WP$"
+    WRB = auto(), "WRB"
+    # XX = auto(), "XX"
+    # SP = auto(), "_SP"
+    # APOSTROPHE = auto(), "``"
+
+    def __init__(self, number_value, tag: str):
+        self.number_value = number_value
+        self.tag = tag
+
+    @staticmethod
+    def parse(tag: str):
+        return PartOfSpeechTagEng.tags.get(tag)
+
+
+PartOfSpeechTagEng.tags = {
+    part_of_speech.tag: part_of_speech
+    for part_of_speech in PartOfSpeechTagEng
+}

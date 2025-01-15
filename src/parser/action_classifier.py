@@ -20,16 +20,18 @@ class ActionClassifier:
             lemma_service: LemmaService,
             graph: SyntaxGraph,
             stack: Stack,
-            queue: Queue):
+            queue: Queue,
+            english_graph = None):
 
         self._model = model
         self.lemma_service = lemma_service
         self._graph = graph
         self._stack = stack
         self._queue = queue
+        self._english_graph = english_graph
 
     def action(self):
-        action = self._model.action(self.lemma_service, self._graph, self._stack, self._queue)
+        action = self._model.action(self.lemma_service, self._graph, self._stack, self._queue, self._english_graph)
         return action if self._is_valid_action(action) else ParserAction.reduce(0)
 
     def _is_valid_action(self, action: ParserAction):

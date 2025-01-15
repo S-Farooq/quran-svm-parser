@@ -9,5 +9,5 @@ class Container:
     def __init__(self):
         client = CorpusClient()
         self.lemma_service = LemmaService()
-        morphology_service = MorphologyService(client, self.lemma_service)
-        self.syntax_service = SyntaxService(client, morphology_service)
+        self.morphology_service = MorphologyService(client, self.lemma_service)
+        self.syntax_service = SyntaxService(client, self.morphology_service)

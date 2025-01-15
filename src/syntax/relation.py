@@ -55,6 +55,61 @@ class Relation(Enum):
     @staticmethod
     def parse(tag: str):
         return Relation.tags.get(tag)
+    
+class RelationEng(Enum):
+    # ROOT = auto(), 'ROOT'
+    acl = auto(), 'acl'
+    acomp = auto(), 'acomp'
+    advcl = auto(), 'advcl'
+    advmod = auto(), 'advmod'
+    agent = auto(), 'agent'
+    amod = auto(), 'amod'
+    appos = auto(), 'appos'
+    attr = auto(), 'attr'
+    aux = auto(), 'aux'
+    auxpass = auto(), 'auxpass'
+    case = auto(), 'case'
+    cc = auto(), 'cc'
+    ccomp = auto(), 'ccomp'
+    compound = auto(), 'compound'
+    conj = auto(), 'conj'
+    csubj = auto(), 'csubj'
+    csubjpass = auto(), 'csubjpass'
+    dative = auto(), 'dative'
+    dep = auto(), 'dep'
+    det = auto(), 'det'
+    dobj = auto(), 'dobj'
+    expl = auto(), 'expl'
+    intj = auto(), 'intj'
+    mark = auto(), 'mark'
+    meta = auto(), 'meta'
+    neg = auto(), 'neg'
+    nmod = auto(), 'nmod'
+    npadvmod = auto(), 'npadvmod'
+    nsubj = auto(), 'nsubj'
+    nsubjpass = auto(), 'nsubjpass'
+    nummod = auto(), 'nummod'
+    oprd = auto(), 'oprd'
+    parataxis = auto(), 'parataxis'
+    pcomp = auto(), 'pcomp'
+    pobj = auto(), 'pobj'
+    poss = auto(), 'poss'
+    preconj = auto(), 'preconj'
+    predet = auto(), 'predet'
+    prep = auto(), 'prep'
+    prt = auto(), 'prt'
+    # punct = auto(), 'punct'
+    # quantmod = auto(), 'quantmod'
+    # relcl = auto(), 'relcl'
+    # xcomp = auto(), 'xcomp'
+
+    def __init__(self, number_value, tag: str):
+        self.number_value = number_value
+        self.tag = tag
+
+    @staticmethod
+    def parse(tag: str):
+        return RelationEng.tags.get(tag)
 
 
 Relation.tags = {
@@ -63,3 +118,10 @@ Relation.tags = {
 }
 
 Relation.relations = list(Relation)
+
+RelationEng.tags = {
+    relation.tag: relation
+    for relation in RelationEng
+}
+
+RelationEng.relations = list(RelationEng)

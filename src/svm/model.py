@@ -23,8 +23,8 @@ class SvmModel:
 class Model:
     def __init__(self, svm_models: List[SvmModel | None]):
         self._svm_models = svm_models
-
-    def action(self, lemma_service: LemmaService, graph: SyntaxGraph, stack: Stack, queue: Queue):
+        
+    def action(self, lemma_service: LemmaService, graph: SyntaxGraph, stack: Stack, queue: Queue, english_graph=None):
         classifier_index = Ensemble.classifier_index(stack.node(0))
         svm_model = self._svm_models[classifier_index]
         if svm_model == None:
@@ -32,7 +32,7 @@ class Model:
 
         action = svm_model.action
         if action is None:
-            instance = Instance.instance(lemma_service, graph, stack, queue)
+            instance = Instance.instance(lemma_service, graph, stack, queue, english_graph)
             feature_vector = instance.feature_vector
 
             matrix = lil_matrix((1, instance.size))

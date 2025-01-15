@@ -14,15 +14,38 @@ from ..syntax.phrase_classifier import PhraseClassifier
 from ..syntax.subgraph import subgraph_end
 from ..lexicography.lemma_service import LemmaService
 from ..svm.model import Model
+import pickle
 
-
+def _get_saved_english_dependencies(graph):
+    folder_for_eng_dep = "data/eng_dep/"
+    starting_loc = str(graph.only_tokens().words[0].token.location)
+    ending_loc = str(graph.only_tokens().words[-1].token.location)
+    filename_query = starting_loc+"-"+ending_loc+'.pickle'
+    try:
+        with open(folder_for_eng_dep+filename_query, 'rb') as handle:
+            f = pickle.load(handle)
+        return {
+            "english_dep_g": f["english_dep_g"],
+            "english_pos": f["english_pos"],
+            "english_tag": f["english_tag"]
+        }
+    except Exception as e:
+        print("could not find or open file:", filename_query)
+        raise(e)
+        return None
+    
 class Parser:
 
-    def __init__(self, model: Model, lemma_service: LemmaService, graph: SyntaxGraph):
+    def __init__(self, model: Model, lemma_service: LemmaService, graph: SyntaxGraph, use_eng_models=False):
         self.stack = Stack()
         self.queue = Queue(graph)
         self._graph = graph
-        self._action_classifier = ActionClassifier(model, lemma_service, graph, self.stack, self.queue)
+        if use_eng_models:
+            self._english_graph = _get_saved_english_dependencies(graph)
+        else:
+            self._english_graph = None
+        self._action_classifier = ActionClassifier(model, lemma_service, graph, self.stack, self.queue, self._english_graph)
+        
 
     def parse(self):
         n = 0
